@@ -2,6 +2,7 @@
     "name": "license-header-manager",
     "displayName": "License Header Manager",
     "description": "License Header Manager",
+    "publisher": "yuri6037",
     "repository": {
         "url": "https://github.com/Yuri6037/license-header-manager"
     },
