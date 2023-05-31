@@ -29,7 +29,7 @@ import { LTFCompletionProvider } from './completion';
 import { addAllLicenseHeaders, addLicenseHeader, addTemplate, removeAllLicenseHeaders, removeLicenseHeader } from './commands';
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Activating "license-header-manager"...');
+    console.log("Activating License Header Manager...");
 
     context.subscriptions.push(registerEditorCommand("add-license-header", addLicenseHeader));
     context.subscriptions.push(registerEditorCommand("remove-license-header", removeLicenseHeader));
@@ -40,13 +40,13 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(registerCommand("global.remove-license-header", removeAllLicenseHeaders));
 
     context.subscriptions.push(vscode.workspace.onWillSaveTextDocument((e) => {
-        const config = vscode.workspace.getConfiguration("license-header-manager", e.document.uri);
+        const config = vscode.workspace.getConfiguration("yuri-license-header-manager", e.document.uri);
         const update = config.get<boolean>("autoUpdate");
         if (!update) {
             //Auto-update is disabled.
             return;
         }
-        vscode.commands.executeCommand("license-header-manager.add-license-header");
+        vscode.commands.executeCommand("yuri-license-header-manager.add-license-header");
     }));
 
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider("ltf", new LTFCompletionProvider()));

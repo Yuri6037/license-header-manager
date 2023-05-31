@@ -26,7 +26,7 @@
 import { Disposable, TextEditor, commands, window } from "vscode";
 
 export function registerEditorCommand(name: string, callback: (editor: TextEditor, ...args: any[]) => any): Disposable {
-    return commands.registerCommand("license-header-manager." + name, (...args) => {
+    return commands.registerCommand("yuri-license-header-manager." + name, (...args) => {
         const editor = window.activeTextEditor;
         if (!editor) {
             return;
@@ -36,7 +36,7 @@ export function registerEditorCommand(name: string, callback: (editor: TextEdito
 }
 
 export function registerCommand(name: string, callback: (...args: any[]) => any): Disposable {
-    return commands.registerCommand("license-header-manager." + name, (...args) => {
+    return commands.registerCommand("yuri-license-header-manager." + name, (...args) => {
         return callback(...args);
     });
 }

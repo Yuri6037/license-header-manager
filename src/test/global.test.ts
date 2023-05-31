@@ -40,7 +40,7 @@ addSuite("Global", (tool) => {
         await tool.writeTemplate("test.xml");
         await tool.writeTemplate("test.toml");
         await tool.writeTemplate("test.reserved.sh");
-        await vscode.commands.executeCommand("license-header-manager.global.add-license-header");
+        await vscode.commands.executeCommand("yuri-license-header-manager.global.add-license-header");
         assert.strictEqual(await tool.readFile("test.rs"), SAMPLE_RS_FILLED);
         assert.strictEqual(await tool.readFile("test.empty.rs"), SAMPLE_EMPTY_FILLED);
         assert.strictEqual(await tool.readFile("test.xml"), SAMPLE_XML_FILLED);
@@ -60,7 +60,7 @@ addSuite("Global", (tool) => {
         await tool.writeTemplate("test.xml");
         await tool.writeTemplate("test.toml");
         await tool.writeTemplate("test.reserved.sh");
-        await vscode.commands.executeCommand("license-header-manager.global.remove-license-header");
+        await vscode.commands.executeCommand("yuri-license-header-manager.global.remove-license-header");
         assert.strictEqual(await tool.readFile("test.rs"), SAMPLE_RS);
         assert.strictEqual(await tool.readFile("test.empty.rs"), SAMPLE_EMPTY);
         assert.strictEqual(await tool.readFile("test.xml"), SAMPLE_XML);

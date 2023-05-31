@@ -32,7 +32,7 @@ addSuite("Templates", (tool) => {
     test("basic", async () => {
         await tool.writeFile("test.empty.rs", SAMPLE_EMPTY);
         await vscode.commands.executeCommand("vscode.open", tool.getUri("test.empty.rs"));
-		await vscode.commands.executeCommand("license-header-manager.add-template");
+		await vscode.commands.executeCommand("yuri-license-header-manager.add-template");
         const text = await tool.writeHeader("test.empty.rs");
         assert.doesNotMatch(text, /{File}/gm);
         assert.doesNotMatch(text, /{Username}/gm);

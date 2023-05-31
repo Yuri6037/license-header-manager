@@ -37,7 +37,7 @@ class IgnoreTree {
     private parser: Ignore | null;
 
     constructor(uri: Uri) {
-        const config = workspace.getConfiguration("license-header-manager", uri);
+        const config = workspace.getConfiguration("yuri-license-header-manager", uri);
         this.ignored = config.get<string[]>("ignoredPaths") ?? [];
         this.parser = null;
         if (config.get<boolean>("useGitignore") ?? false) {

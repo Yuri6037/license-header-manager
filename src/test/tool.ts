@@ -74,21 +74,21 @@ export class TestTool {
 
     async writeTemplate(p: string) {
         await vscode.commands.executeCommand("vscode.open", this.getUri(p));
-		await vscode.commands.executeCommand("license-header-manager.add-template");
+		await vscode.commands.executeCommand("yuri-license-header-manager.add-template");
 		assert.notStrictEqual(vscode.window.activeTextEditor, undefined);
         await writeFile(vscode.window.activeTextEditor!.document.uri.fsPath, TEST_TEMPLATE_TEXT);
     }
 
     async writeHeader(p: string): Promise<string> {
         await vscode.commands.executeCommand("vscode.open", this.getUri(p));
-		await vscode.commands.executeCommand("license-header-manager.add-license-header");
+		await vscode.commands.executeCommand("yuri-license-header-manager.add-license-header");
 		await vscode.commands.executeCommand("workbench.action.files.saveAll");
         return await readFile(this.getPath(p), "utf8");
     }
 
     async removeHeader(p: string): Promise<string> {
         await vscode.commands.executeCommand("vscode.open", this.getUri(p));
-		await vscode.commands.executeCommand("license-header-manager.remove-license-header");
+		await vscode.commands.executeCommand("yuri-license-header-manager.remove-license-header");
 		await vscode.commands.executeCommand("workbench.action.files.saveAll");
         return await readFile(this.getPath(p), "utf8");
     }

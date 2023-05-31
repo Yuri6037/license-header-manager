@@ -55,7 +55,7 @@ export async function addLicenseHeader(editor: TextEditor) {
         if (!await mgr.hasTemplate(ext)) {
             const option = await window.showInformationMessage(`No template found for '${ext}' files, would you like to create one?`, "Yes", "No");
             if (option === "Yes") {
-                await commands.executeCommand("license-header-manager.add-template");
+                await commands.executeCommand("yuri-license-header-manager.add-template");
             }
             return;
         }

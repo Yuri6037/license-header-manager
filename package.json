@@ -1,5 +1,5 @@
 {
-    "name": "license-header-manager",
+    "name": "yuri-license-header-manager",
     "displayName": "License Header Manager",
     "description": "License Header Manager",
     "publisher": "yuri6037",
@@ -40,57 +40,57 @@
         ],
         "commands": [
             {
-                "command": "license-header-manager.global.add-license-header",
+                "command": "yuri-license-header-manager.global.add-license-header",
                 "title": "Add/Update All License Headers"
             },
             {
-                "command": "license-header-manager.global.remove-license-header",
+                "command": "yuri-license-header-manager.global.remove-license-header",
                 "title": "Remove All License Headers"
             },
             {
-                "command": "license-header-manager.add-license-header",
+                "command": "yuri-license-header-manager.add-license-header",
                 "title": "Add/Update License Header"
             },
             {
-                "command": "license-header-manager.add-template",
+                "command": "yuri-license-header-manager.add-template",
                 "title": "Add/Update License Template"
             },
             {
-                "command": "license-header-manager.remove-license-header",
+                "command": "yuri-license-header-manager.remove-license-header",
                 "title": "Remove License Header"
             }
         ],
         "configuration": {
             "title": "License Header Manager",
             "properties": {
-                "license-header-manager.singleLineComments": {
+                "yuri-license-header-manager.singleLineComments": {
                     "type": "boolean",
                     "description": "Prefer single line comments on default set of language configurations instead of multi-line comment blocks (where applicable)."
                 },
-                "license-header-manager.autoUpdate": {
+                "yuri-license-header-manager.autoUpdate": {
                     "type": "boolean",
                     "description": "Automatically update license block on file save."
                 },
-                "license-header-manager.ignoredPaths": {
+                "yuri-license-header-manager.ignoredPaths": {
                     "type": "array",
                     "description": "List of paths or path components to be ignored when attempting to generate license headers.",
                     "items": {
                         "type": "string"
                     }
                 },
-                "license-header-manager.useGitignore": {
+                "yuri-license-header-manager.useGitignore": {
                     "type": "boolean",
                     "default": true,
                     "description": "Additionally ignore files that matches patterns specified in .gitignore."
                 },
-                "license-header-manager.disabledLanguages": {
+                "yuri-license-header-manager.disabledLanguages": {
                     "type": "array",
                     "description": "List of disabled source file extensions.",
                     "items": {
                         "type": "string"
                     }
                 },
-                "license-header-manager.languages": {
+                "yuri-license-header-manager.languages": {
                     "type": "array",
                     "description": "Language overrides.",
                     "items": {

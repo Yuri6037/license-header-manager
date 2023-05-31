@@ -152,7 +152,7 @@ export class LangMap {
 
     constructor(uri: Uri) {
         this.overrides = {};
-        const config = workspace.getConfiguration("license-header-manager", uri);
+        const config = workspace.getConfiguration("yuri-license-header-manager", uri);
         const disabled = config.get<string[]>("disabledLanguages");
         const entries = config.get<JsonLangConfig[]>("languages");
         if (entries) {

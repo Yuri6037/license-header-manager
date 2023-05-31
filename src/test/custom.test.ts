@@ -42,7 +42,7 @@ const CONFIG: JsonLangConfig = {
 };
 
 const VSCODE_CONFIG = `{
-    "license-header-manager.languages": [
+    "yuri-license-header-manager.languages": [
         ${JSON.stringify(CONFIG)}
     ]
 }`;
