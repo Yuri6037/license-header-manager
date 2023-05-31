@@ -2,6 +2,9 @@
     "name": "license-header-manager",
     "displayName": "License Header Manager",
     "description": "License Header Manager",
+    "repository": {
+        "url": "https://github.com/Yuri6037/license-header-manager"
+    },
     "version": "1.0.0",
     "engines": {
         "vscode": "^1.78.0"
