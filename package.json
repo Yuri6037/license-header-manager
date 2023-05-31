@@ -1,0 +1,179 @@
+{
+    "name": "license-header-manager",
+    "displayName": "License Header Manager",
+    "description": "License Header Manager",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.78.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "languages": [
+            {
+                "id": "ltf",
+                "extensions": [
+                    ".ltf"
+                ],
+                "aliases": [
+                    "License Template File",
+                    "LTF"
+                ],
+                "configuration": "./language/ltf.language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "ltf",
+                "scopeName": "source.ltf",
+                "path": "./language/ltf.tmGrammar.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "license-header-manager.global.add-license-header",
+                "title": "Add/Update All License Headers"
+            },
+            {
+                "command": "license-header-manager.global.remove-license-header",
+                "title": "Remove All License Headers"
+            },
+            {
+                "command": "license-header-manager.add-license-header",
+                "title": "Add/Update License Header"
+            },
+            {
+                "command": "license-header-manager.add-template",
+                "title": "Add/Update License Template"
+            },
+            {
+                "command": "license-header-manager.remove-license-header",
+                "title": "Remove License Header"
+            }
+        ],
+        "configuration": {
+            "title": "License Header Manager",
+            "properties": {
+                "license-header-manager.singleLineComments": {
+                    "type": "boolean",
+                    "description": "Prefer single line comments on default set of language configurations instead of multi-line comment blocks (where applicable)."
+                },
+                "license-header-manager.autoUpdate": {
+                    "type": "boolean",
+                    "description": "Automatically update license block on file save."
+                },
+                "license-header-manager.ignoredPaths": {
+                    "type": "array",
+                    "description": "List of paths or path components to be ignored when attempting to generate license headers.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "license-header-manager.useGitignore": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Additionally ignore files that matches patterns specified in .gitignore."
+                },
+                "license-header-manager.disabledLanguages": {
+                    "type": "array",
+                    "description": "List of disabled source file extensions.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "license-header-manager.languages": {
+                    "type": "array",
+                    "description": "Language overrides.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "extensions": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "The list if source file extensions this configuration should be applied for."
+                            },
+                            "reserved": {
+                                "type": [
+                                    "null",
+                                    "object"
+                                ],
+                                "description": "The configuration for reserved lines (typically for XML style languages).",
+                                "properties": {
+                                    "numLines": {
+                                        "type": "integer",
+                                        "description": "The maximum number of reserved lines."
+                                    },
+                                    "regex": {
+                                        "type": "object",
+                                        "description": "The regex which should match the reserved text.",
+                                        "properties": {
+                                            "pattern": {
+                                                "type": "string",
+                                                "description": "The pattern of the regex."
+                                            },
+                                            "flags": {
+                                                "type": "string",
+                                                "description": "The flags of the regex."
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "startComment": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "description": "The start comment, null if this configuration does not use block comments."
+                            },
+                            "middleComment": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "description": "The middle comment, null if this configuration does not use a prefix on each comment line."
+                            },
+                            "endComment": {
+                                "type": "string",
+                                "description": "The end comment, set to an empty string to use a single new-line character as terminator for the comment block."
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/glob": "^8.1.0",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "16.x",
+        "@types/vscode": "^1.78.0",
+        "@typescript-eslint/eslint-plugin": "^5.59.1",
+        "@typescript-eslint/parser": "^5.59.1",
+        "@vscode/test-electron": "^2.3.0",
+        "@vscode/vsce": "^2.19.0",
+        "eslint": "^8.39.0",
+        "glob": "^8.1.0",
+        "mocha": "^10.2.0",
+        "typescript": "^5.0.4"
+    },
+    "dependencies": {
+        "ignore": "^5.2.4"
+    }
+}

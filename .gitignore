@@ -1,0 +1,13 @@
+# MacOS Files
+.DS_Store
+
+# IDE files
+.idea
+.vscode
+
+# Other files
+out
+dist
+node_modules
+.vscode-test/
+*.vsix
