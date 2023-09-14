@@ -104,16 +104,24 @@ export class Parser {
         }
     }
 
-    private genLicenseBlock(range: NullableRange, license: string[]): string {
+    private genLicenseBlock(range: NullableRange, license: string[], existing?: string[]): string {
         let text = "";
         if (this.config.startComment) {
             text += this.withEol(this.config.startComment);
         }
-        for (const line of license) {
+        for (let i = 0; i !== license.length; ++i) {
             let full = "";
             if (this.config.middleComment) {
                 full += this.config.middleComment;
             }
+            const line = license[i].replace(/{__LINE_CONTENT__}/g, (_, offset) => {
+                if (!existing) {
+                    return "";
+                }
+                const existingLine = existing[i + (this.config.startComment ? 1 : 0)];
+                const content = existingLine.substring(offset + this.config.middleComment?.length);
+                return content;
+            });
             full += line;
             full = full.trimEnd();
             text += this.withEol(full);
@@ -138,25 +146,22 @@ export class Parser {
 
     needsCommentBlockUpdate(license: string[]) {
         const range = this.getCommentBlockRange();
-        const text = this.genLicenseBlock(range, license);
-        if (range.end === null) {
+        const editorText = range.end ? this.editor.document.getText(new Range(range.start, range.end)) : null;
+        const text = this.genLicenseBlock(range, license, editorText?.split("\n"));
+        if (range.end === null || editorText === null) {
             return true;
         }
-        const editorText = this.editor.document.getText(new Range(range.start, range.end));
-        const text1 = text.replace(/{__LINE_CONTENT__}/g, (_, offset) => {
-            const remaining = editorText.substring(offset);
-            const lineContent = remaining.substring(0, remaining.indexOf("\n"));
-            return lineContent;
-        });
-        return editorText !== text1;
+        return editorText !== text;
     }
 
     addOrUpdateCommentBlock(edit: TextEditorEdit, license: string[]) {
         const range = this.getCommentBlockRange();
+        let editorText: string | null = null;
         if (range.end !== null) {
+            editorText = this.editor.document.getText(new Range(range.start, range.end));
             edit.delete(new Range(range.start, range.end));
         }
-        const text = this.genLicenseBlock(range, license).replace(/{__LINE_CONTENT__}/g, "");
+        const text = this.genLicenseBlock(range, license, editorText?.split("\n"));
         edit.insert(range.start, text);
     }
 }
