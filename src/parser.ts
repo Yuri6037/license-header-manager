@@ -143,7 +143,12 @@ export class Parser {
             return true;
         }
         const editorText = this.editor.document.getText(new Range(range.start, range.end));
-        return editorText !== text;
+        const text1 = text.replace(/{__LINE_CONTENT__}/g, (_, offset) => {
+            const remaining = editorText.substring(offset);
+            const lineContent = remaining.substring(0, remaining.indexOf("\n"));
+            return lineContent;
+        });
+        return editorText !== text1;
     }
 
     addOrUpdateCommentBlock(edit: TextEditorEdit, license: string[]) {
@@ -151,7 +156,7 @@ export class Parser {
         if (range.end !== null) {
             edit.delete(new Range(range.start, range.end));
         }
-        const text = this.genLicenseBlock(range, license);
+        const text = this.genLicenseBlock(range, license).replace(/{__LINE_CONTENT__}/g, "");
         edit.insert(range.start, text);
     }
 }

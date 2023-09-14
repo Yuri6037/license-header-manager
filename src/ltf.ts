@@ -116,7 +116,8 @@ export class LTFManager {
             ["CreationMonth"]: (creationDate.getMonth() + 1).toString(),
             ["CreationDay"]: creationDate.getDate().toString(),
             ["CreationDate"]: creationDate.toString(),
-            ["Username"]: os.userInfo().username
+            ["Username"]: os.userInfo().username,
+            ["LineContent"]: "{__LINE_CONTENT__}"
         };
         for (var [key, value] of Object.entries(replacements)) {
             text = text.replace(new RegExp("{" + key + "}", "gm"), value);

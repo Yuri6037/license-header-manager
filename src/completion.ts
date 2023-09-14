@@ -36,7 +36,8 @@ const VARIABLES = [
     { name: "CreationMonth", description: "The file creation month number." },
     { name: "CreationDay", description: "The file creation day of the month number." },
     { name: "CreationDate", description: "The file creation date as string." },
-    { name: "Username", description: "The name of the current user on the OS." }
+    { name: "Username", description: "The name of the current user on the OS." },
+    { name: "LineContent", description: "Remaining content of the current line starting at the position of this token." }
 ];
 
 export class LTFCompletionProvider implements CompletionItemProvider {
