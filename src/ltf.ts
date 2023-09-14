@@ -109,7 +109,7 @@ export class LTFManager {
             ["File"]: path.basename(info.filePath),
             ["Path"]: info.filePath,
             ["CurrentYear"]: date.getFullYear().toString(),
-            ["CurrentMonth"]: date.getMonth().toString(),
+            ["CurrentMonth"]: (date.getMonth() + 1).toString(),
             ["CurrentDay"]: date.getDate().toString(),
             ["CurrentDate"]: date.toString(),
             ["CreationYear"]: creationDate.getFullYear().toString(),
