@@ -41,7 +41,7 @@ const VARIABLES = [
 
 export class LTFCompletionProvider implements CompletionItemProvider {
     provideCompletionItems(document: TextDocument, position: Position, token: CancellationToken, context: CompletionContext): ProviderResult<CompletionList<CompletionItem> | CompletionItem[]> {
-        const range = document.getWordRangeAtPosition(position, /{[^ ]+}/);
+        const range = document.getWordRangeAtPosition(position, /{[A-z]+}/);
         if (!range) {
             return VARIABLES.map(v => { return {
                 label: `{${v.name}}`,
@@ -50,7 +50,7 @@ export class LTFCompletionProvider implements CompletionItemProvider {
             };});
         }
         const text = document.getText(range);
-        const match = text.match(/({)([^ ]+)(})/);
+        const match = text.match(/({)([A-z]+)(})/);
         if (!match) {
             return VARIABLES.map(v => { return {
                 label: v.name,

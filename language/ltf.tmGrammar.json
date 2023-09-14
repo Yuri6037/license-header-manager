@@ -14,7 +14,7 @@
             ]
         },
         "variable": {
-            "match": "({)([^ ]+)(})",
+            "match": "({)([A-z]+)(})",
             "captures": {
                 "1": {
                     "name": "markup.bold"

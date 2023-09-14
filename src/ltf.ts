@@ -113,7 +113,7 @@ export class LTFManager {
             ["CurrentDay"]: date.getDate().toString(),
             ["CurrentDate"]: date.toString(),
             ["CreationYear"]: creationDate.getFullYear().toString(),
-            ["CreationMonth"]: creationDate.getMonth().toString(),
+            ["CreationMonth"]: (creationDate.getMonth() + 1).toString(),
             ["CreationDay"]: creationDate.getDate().toString(),
             ["CreationDate"]: creationDate.toString(),
             ["Username"]: os.userInfo().username
