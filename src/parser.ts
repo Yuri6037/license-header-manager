@@ -119,6 +119,9 @@ export class Parser {
                     return "";
                 }
                 const existingLine = existing[i + (this.config.startComment ? 1 : 0)];
+                if (!existingLine) {
+                    return "";
+                }
                 const content = existingLine.substring(offset + this.config.middleComment?.length);
                 return content;
             });
